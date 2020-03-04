@@ -14,6 +14,11 @@
 #   be updated without requiring reconfiguration of Octavia.
 #   Defaults to $::os_service_default
 #
+# [*amp_image_owner_id*]
+#   Restrict glance image selection to a specific owner ID.  This is a
+#   recommended security setting.
+#   Defaults to $::os_service_default
+#
 # [*amp_secgroup_list*]
 #   List of security groups to use for Amphorae.
 #   Defaults to $::os_service_default
@@ -154,6 +159,7 @@
 class octavia::controller (
   $amp_flavor_id               = '65',
   $amp_image_tag               = $::os_service_default,
+  $amp_image_owner_id          = $::os_service_default,
   $amp_secgroup_list           = $::os_service_default,
   $amp_boot_network_list       = [],
   $loadbalancer_topology       = $::os_service_default,
@@ -221,6 +227,7 @@ class octavia::controller (
   octavia_config {
     'controller_worker/amp_flavor_id'            : value => $amp_flavor_id_real;
     'controller_worker/amp_image_tag'            : value => $amp_image_tag_real;
+    'controller_worker/amp_image_owner_id'       : value => $amp_image_owner_id;
     'controller_worker/amp_secgroup_list'        : value => $amp_secgroup_list_real;
     'controller_worker/amp_boot_network_list'    : value => $amp_boot_network_list_real;
     'controller_worker/loadbalancer_topology'    : value => $loadbalancer_topology_real;

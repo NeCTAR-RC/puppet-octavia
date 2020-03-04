@@ -17,6 +17,7 @@ describe 'octavia::controller' do
           :amp_image_tag               => 'amphorae1',
           :amp_secgroup_list           => ['lb-mgmt-sec-grp'],
           :amp_boot_network_list       => ['lbnet1', 'lbnet2'],
+          :amp_image_owner_id          => 'customowner',
           :loadbalancer_topology       => 'SINGLE',
           :amp_ssh_key_name            => 'custom-amphora-key',
           :controller_ip_port_list     => '1.2.3.4:5555,4.3.2.1:5555',
@@ -43,6 +44,7 @@ describe 'octavia::controller' do
 
       it { is_expected.to contain_octavia_config('controller_worker/amp_flavor_id').with_value('42') }
       it { is_expected.to contain_octavia_config('controller_worker/amp_image_tag').with_value('amphorae1') }
+      it { is_expected.to contain_octavia_config('controller_worker/amp_image_owner_id').with_value('customowner') }
       it { is_expected.to contain_octavia_config('controller_worker/amp_secgroup_list').with_value(['lb-mgmt-sec-grp']) }
       it { is_expected.to contain_octavia_config('controller_worker/amp_boot_network_list').with_value(['lbnet1', 'lbnet2']) }
       it { is_expected.to contain_octavia_config('controller_worker/loadbalancer_topology').with_value('SINGLE') }
